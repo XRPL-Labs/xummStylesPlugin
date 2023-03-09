@@ -2,7 +2,7 @@
   "name": "@kevinkoobs/xummstyleplugin",
   "version": "0.0.3",
   "description": "A TailwindCSS plugin for Xumm Styles",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
