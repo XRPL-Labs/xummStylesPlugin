@@ -16,3 +16,5 @@ module.exports = {
 Dont' forget to add the typekit stylesheet for the font:
 
 ```<link type="stylesheet" href="https://use.typekit.net/vtt7ckl.css" type="text/css"```
+
+To make the themes work, select the property `xAppStyle` from the URL and lowercase it. Put it as a class on your `body` element and you're good to go!
