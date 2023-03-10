@@ -1,24 +1,49 @@
 const plugin = require('tailwindcss/plugin');
+
+function withOpacityValue(variable: string) {
+    return ({ opacityValue }: any) => {
+        if (opacityValue === undefined) {
+            return `rgb(var(${variable})) !important`
+        }
+        return `rgba(var(${variable}), ${opacityValue}) !important`
+    }
+}
+
 const styles = plugin(
-    function ({ addUtilities, addBase, e }: any) {
+    function ({ addUtilities, addBase, e, theme }: any) {
         addUtilities({
-            '.light': {
+            '[class~="light"]': {
                 '--themeTextColorPrimary': 'var(--colorBlack)',
-                '--themeColorBackgroundPrimary': 'rgb(var(--colorWhite))',
-                '--themeColorBackgroundTint': 'var(--colorLight)',
-                '--themeColorPrimary': 'var(--colorBlue)',
+                '--themeTextColorSecondary': 'var(--colorGrey)',
+                '--themeColorBackgroundPrimary': 'var(--colorWhite)',
+                '--themeColorTint': 'var(--colorLight)',
+                '--themeColorTintOpacity': '1'
             },
-            '.dark': {
+            '[class~="dark"]': {
                 '--themeTextColorPrimary': 'var(--colorWhite)',
-                '--themeColorBackgroundPrimary': 'rgb(var(--colorBlack))',
-                '--themeColorBackgroundTint': 'rgba(var(--colorGrey), 0.25)',
-                '--themeColorPrimary': 'var(--colorBlue)',
+                '--themeTextColorSecondary': 'var(--colorSilver)',
+                '--themeColorBackgroundPrimary': 'var(--colorBlack)',
+                '--themeColorTint': 'var(--colorGrey)',
+                '--themeColorTintOpacity': '0.25'
             },
-            '.royal': {
-
+            '[class~="moonlight"]': {
+                '--themeTextColorPrimary': 'var(--colorWhite)',
+                '--themeTextColorSecondary': 'var(--colorSilver)',
+                '--themeColorBackgroundPrimary': 'var(--colorMoonlight)',
+                '--themeColorTint': 'var(--colorGrey)',
+                '--themeColorTintOpacity': '0.19'
             },
-            '.moonlight': {
-
+            '[class~="royal"]': {
+                '--themeTextColorPrimary': 'var(--colorWhite)',
+                '--themeTextColorSecondary': 'var(--colorSilver)',
+                '--themeColorBackgroundPrimary': 'var(--colorRoyal)',
+                '--themeColorTint': 'var(--colorGrey)',
+                '--themeColorTintOpacity': '0.22'
+            },
+            'body': {
+                fontFamily: `'proxima-nova', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
+                color: theme('textColor.primary'),
+                backgroundColor: 'rgb(var(--themeColorBackgroundPrimary))'
             }
         }),
             addBase({
@@ -27,18 +52,16 @@ const styles = plugin(
                     '--colorBlack': '0, 0, 0',
                     '--colorGrey': '96, 104, 133',
                     '--colorGray': 'var(--colorGrey)',
-                    '--colorSilver': '#ACB1C1',
-                    '--colorLight': '#F8FAFD',
-                    '--colorBlue': '#0030CF',
-                    '--colorOrange': '#F8BF4C',
-                    '--colorGreen': '#3BDC96',
-                    '--colorRed': '#FF5B5B'
+                    '--colorSilver': '172, 177, 193',
+                    '--colorLight': '248, 250, 253',
+                    '--colorBlue': '0, 48, 207',
+                    '--colorOrange': '248, 191, 76',
+                    '--colorGreen': '59, 220, 150',
+                    '--colorRed': '255, 91, 91',
+                    '--colorMoonlight': '24, 26, 33',
+                    '--colorRoyal': '3, 11, 54'
                 },
-                'body': {
-                    fontFamily: 'Arial',
-                    color: 'var(--themeTextColorPrimary)',
-                    background: 'var(--themeColorBackgroundTint)'
-                }
+
             })
     },
     {
@@ -49,9 +72,14 @@ const styles = plugin(
                     secondary: 'var(--colorThemeSecondary)',
                     theme: {
                         primary: 'var(--themeColorPrimary)',
-                        secondary: 'black'
+                        secondary: 'black',
+                        tint: 'rgba(var(--themeColorTint), var(--themeColorTintOpacity))',
                     }
                 },
+                textColor: {
+                    'primary': withOpacityValue('--themeTextColorPrimary'),
+                    'secondary': withOpacityValue('--themeTextColorSecondary'),
+                }
             }
         }
     }
