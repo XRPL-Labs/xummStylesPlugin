@@ -10,42 +10,70 @@ function withOpacityValue(variable: string) {
 }
 
 const styles = plugin(
-    function ({ addUtilities, addBase, e, theme }: any) {
+    function ({ addUtilities, addBase, addComponents, e, theme }: any) {
         addUtilities({
             '[class~="light"]': {
                 '--themeTextColorPrimary': 'var(--colorBlack)',
                 '--themeTextColorSecondary': 'var(--colorGrey)',
                 '--themeColorBackgroundPrimary': 'var(--colorWhite)',
                 '--themeColorTint': 'var(--colorLight)',
-                '--themeColorTintOpacity': '1'
+                '--themeColorTintOpacity': '1',
+                '--themeButtonOpacity': '0.06',
             },
             '[class~="dark"]': {
                 '--themeTextColorPrimary': 'var(--colorWhite)',
                 '--themeTextColorSecondary': 'var(--colorSilver)',
                 '--themeColorBackgroundPrimary': 'var(--colorBlack)',
                 '--themeColorTint': 'var(--colorGrey)',
-                '--themeColorTintOpacity': '0.25'
+                '--themeColorTintOpacity': '0.25',
+                '--themeButtonOpacity': '0.22',
             },
             '[class~="moonlight"]': {
                 '--themeTextColorPrimary': 'var(--colorWhite)',
                 '--themeTextColorSecondary': 'var(--colorSilver)',
                 '--themeColorBackgroundPrimary': 'var(--colorMoonlight)',
                 '--themeColorTint': 'var(--colorGrey)',
-                '--themeColorTintOpacity': '0.19'
+                '--themeColorTintOpacity': '0.19',
+                '--themeButtonOpacity': '0.17',
             },
             '[class~="royal"]': {
                 '--themeTextColorPrimary': 'var(--colorWhite)',
                 '--themeTextColorSecondary': 'var(--colorSilver)',
                 '--themeColorBackgroundPrimary': 'var(--colorRoyal)',
                 '--themeColorTint': 'var(--colorGrey)',
-                '--themeColorTintOpacity': '0.22'
+                '--themeColorTintOpacity': '0.22',
+                '--themeButtonOpacity': '0.17',
             },
             'body': {
                 fontFamily: `'proxima-nova', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
                 color: theme('textColor.primary'),
-                backgroundColor: 'rgb(var(--themeColorBackgroundPrimary))'
+                backgroundColor: 'rgb(var(--themeColorBackgroundPrimary))',
+                paddingLeft: '20px',
+                paddingRight: '22px'
             }
         }),
+            addComponents({
+                '.button': {
+                    borderRadius: 'var(--borderRadius)',
+                    fontWeight: 'bold'
+                },
+                '.button--blue': {
+                    backgroundColor: 'rgba(var(--colorBlue), var(--themeButtonOpacity))',
+                    color: 'rgb(var(--colorBlue))'
+                },
+                '.button--orange': {
+                    backgroundColor: 'rgba(var(--colorOrange), var(--themeButtonOpacity))',
+                    color: 'rgb(var(--colorOrange))',
+                },
+                '.button--green': {
+                    backgroundColor: 'rgba(var(--colorGreen), var(--themeButtonOpacity))',
+                    color: 'rgb(var(--colorGreen))',
+                },
+                '.button--red': {
+                    backgroundColor: 'rgba(var(--colorRed), var(--themeButtonOpacity))',
+                    color: 'rgb(var(--colorRed))',
+                },
+            }),
             addBase({
                 ':root': {
                     '--colorWhite': '255, 255, 255',
@@ -59,7 +87,8 @@ const styles = plugin(
                     '--colorGreen': '59, 220, 150',
                     '--colorRed': '255, 91, 91',
                     '--colorMoonlight': '24, 26, 33',
-                    '--colorRoyal': '3, 11, 54'
+                    '--colorRoyal': '3, 11, 54',
+                    '--borderRadius': '15px',
                 },
 
             })
