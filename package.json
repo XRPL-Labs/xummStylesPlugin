@@ -1,5 +1,5 @@
 {
-  "name": "@kevinkoobs/xummstyleplugin",
+  "name": "xummstyleplugin",
   "version": "0.0.4",
   "description": "A TailwindCSS plugin for Xumm Styles",
   "main": "lib/index.js",
