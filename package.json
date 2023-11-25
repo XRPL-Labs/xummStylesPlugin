@@ -1,5 +1,5 @@
 {
-  "name": "xummstyleplugin",
+  "name": "xaman-styleplugin",
   "version": "0.0.4",
   "description": "A TailwindCSS plugin for Xumm Styles",
   "main": "lib/index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KevinKoobs/xummStylesPlugin.git"
+    "url": "git+https://github.com/xrpl-labs/xummStylesPlugin.git"
   },
   "keywords": [
     "xumm",
